@@ -1,6 +1,12 @@
 import unittest
 from .utils import *
 
+PREFIX_DIR = "grade_func"
+
+def change_prefix_dir(prefix):
+    global PREFIX_DIR
+    PREFIX_DIR = prefix
+
 # Custom TestCase that accepts a function and input/output dynamically
 class TestFunction(unittest.TestCase):
     
@@ -78,16 +84,16 @@ def test_func_from_file(func_to_test, input_file, output_file = None, output_typ
     suite = unittest.TestSuite()
     if output_file is None:
         if plain_text_input:
-            input_data = read_plain_text_from_file(f"grade_func/input/{input_file}")
+            input_data = read_plain_text_from_file(f"{PREFIX_DIR}/input/{input_file}")
         else:
-            input_data = read_mixed_lists_from_file(f"grade_func/input/{input_file}")
+            input_data = read_mixed_lists_from_file(f"{PREFIX_DIR}/input/{input_file}")
         
         if plain_text_output:
-            output_data = read_plain_text_from_file(f"grade_func/output/{input_file}")
+            output_data = read_plain_text_from_file(f"{PREFIX_DIR}/output/{input_file}")
         elif output_type == 'single':
-            output_data = read_single_from_file(f"grade_func/output/{input_file}")
+            output_data = read_single_from_file(f"{PREFIX_DIR}/output/{input_file}")
         else:
-            output_data = read_mixed_lists_from_file(f"grade_func/output/{input_file}")
+            output_data = read_mixed_lists_from_file(f"{PREFIX_DIR}/output/{input_file}")
     else:
         if plain_text_input:
             input_data = read_mixed_lists_from_file(input_file)
