@@ -1,0 +1,5 @@
+[2, 6, 1]
+"Error: Input must be a square NumPy array."
+[7]
+[10, 50, 90]
+[11, 16, 21, 26]

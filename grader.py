@@ -80,7 +80,7 @@ def hw8_q4_1_1(func_to_test):
         suite.addTest(TestFunction('runTest', func_to_test, input_value, expected_value, i))
     return grade_tests(suite, 0.4)
 
-def test_func_from_file(func_to_test, input_file, output_file = None, output_type = 'single', max_grade=1.0, delta=0, plain_text_input=False, plain_text_output=False):
+def test_func_from_file(func_to_test, input_file, output_file = None, output_type = 'single', max_grade=1.0, delta=0, plain_text_input=False, plain_text_output=False, debug=False):
     suite = unittest.TestSuite()
     if output_file is None:
         if plain_text_input:
@@ -113,6 +113,8 @@ def test_func_from_file(func_to_test, input_file, output_file = None, output_typ
     test_data = [(input_data[i], output_data[i]) for i in range(len(input_data))]
     for i, (input_value, expected_value) in enumerate(test_data):
         # Add each test case to the suite
+        if debug:
+            print(i, input_value, func_to_test(*input_value), expected_value)
         if delta > 0:
             suite.addTest(ApproximationTest('runTest', func_to_test, input_value, expected_value, i, delta))
         else:
